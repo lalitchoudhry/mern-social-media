@@ -15,6 +15,7 @@ const { register } = require('./controllers/user');
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/posts');
 const verifyToken = require('./middleware/auth');
+const { createPost } = require('./controllers/post');
 
 // COFIG AND MIDDLEWARE
 const app = express();
