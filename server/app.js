@@ -11,6 +11,10 @@ const bcryptjs = require('bcryptjs');
 const mongoose = require('./config/database');
 const {fileURLToPath} = require('url');
 const path = require('path');
+const { register } = require('./controllers/user');
+const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/posts');
+const verifyToken = require('./middleware/auth');
 
 // COFIG AND MIDDLEWARE
 const app = express();
@@ -35,11 +39,15 @@ const upload = multer({storage});
 
 // ROUTES WITH FILE
 app.post('/auth/register', upload.single("picture"), register);
-app.post('/post', verfytoken, upload.single("picture"), createPost);
+app.post('/post', verifyToken, upload.single("picture"), createPost);
 
 // ROUTES
 app.get('/', (req, res)=>{
-    res.send("hello dp");
+    res.send("server is on");
 })
+
+app.use("/auth", userRoutes);
+app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
 
 module.exports = app;
