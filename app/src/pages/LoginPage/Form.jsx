@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../state";
 
 // ALL API IMPORTS
-import { loginUser, userRegister } from "../../apis/user";
+import { userLogin, userRegister } from "../../apis/user";
 
 // STYLES IMPORT
 import { Box, TextField, useMediaQuery, Typography, useTheme, Button } from "@mui/material";
@@ -73,7 +73,7 @@ function Form() {
 
   const login = async (values, onSubmitProps) => {
     const userData = JSON.stringify(values);
-    const loggedIn = await loginUser(userData);
+    const loggedIn = await userLogin(userData);
     onSubmitProps.resetForm();
     if (loggedIn) {
       dispatch(
@@ -106,7 +106,7 @@ function Form() {
         setFieldValue,
         resetForm,
       }) => (
-        <form>
+        <form onSubmit={handleSubmit}>
           <Box
             display="grid"
             gap="30px"

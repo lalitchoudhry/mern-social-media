@@ -13,7 +13,6 @@ const createPost = async(req, res, next) => {
         const newPost = await Post.create({
             userId,
             name: user.name,
-            username: user.username,
             location: user.location,
             description,
             userPicturePath: user.picturePath,

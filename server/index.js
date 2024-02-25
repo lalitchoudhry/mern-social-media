@@ -1,10 +1,10 @@
-require('dotenv').config();
+// require('dotenv').config();
 const mongoose = require('mongoose');
 const app = require('./app');
 
 const PORT = process.env.PORT || 80
 
-//WRONG ROUTE ERROR HANDLER
+// WRONG ROUTE ERROR HANDLER
 app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
@@ -23,7 +23,7 @@ app.use((err, req, res) => {
 })
 
 // DATABASE CONNECTION
-mongoose.connect(process.env.DATABASE_URI)
+mongoose.connect(process.env.DATABASE_URL)
     .then(() => {
         // LISTEN
         app.listen(PORT, () => {

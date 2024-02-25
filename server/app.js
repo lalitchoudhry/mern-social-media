@@ -8,9 +8,8 @@ const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const bcryptjs = require('bcryptjs');
-const mongoose = require('./config/database');
-const {fileURLToPath} = require('url');
-const path = require('path');
+// const {fileURLToPath} = require('url');
+const path = require("path")
 const { register } = require('./controllers/user');
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/posts');
@@ -24,8 +23,9 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
 app.use(cors());
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const _filename = fileURLToPath(require(meta.url));
+// const _dirname = path.dirname(_filename);
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 // FILE STORAGE
 const storage = multer.diskStorage({

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // STATE
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../state/index";
 
 // STYLE AND ICON
@@ -32,7 +32,8 @@ import FlexBetween from "./FlexBetween";
 
 const Navbar = () => {
   // ALL STATES AND VARIABLE
-  const fullName = "Lalit Choudhary";
+  const user = useSelector((state) => state.user);
+  const fullName = user.name;
 
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+  
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
@@ -110,7 +112,7 @@ const Navbar = () => {
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
-              <MenuItem>Log Out</MenuItem>
+              <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
             </Select>
           </FormControl>
         </FlexBetween>

@@ -10,10 +10,6 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    username: {
-      type: String,
-      required: true,
-    },
     location: String,
     description: String,
     picturePath: String,
